@@ -16,7 +16,7 @@ class Human
 	std::string last_name;
 	std::string first_name;
 	unsigned int age;
-
+	 
 public:
 	const std::string& get_last_name() const
 	{

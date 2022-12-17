@@ -3,6 +3,8 @@
 #include <string>
 using namespace std;
 
+#define DELIMITER "\n_________________________________________________________________________________\n\n"
+
 #define HUMAN_TAKE_PARAMETRS const std::string& last_name, const std::string& first_name, unsigned int age
 #define HUMAN_GIVE_PARAMETRS last_name, first_name, age
 #define STUDENT_TAKE_PARAMETRS const std::string& speciality, const std::string& group, double rating, double attendance
@@ -51,17 +53,25 @@ public:
 		set_age(age);
 		cout << "HConstructor:\t" << this << endl;
 	}
-	~Human()
+	virtual ~Human()
 	{
 		cout << "Destructor:\t" << this << endl;
 	}
 
 	// Methods:
-	void info() const
+	virtual std:: ostream& info(std::ostream& os) const
 	{
-		cout << last_name << " " << first_name << " " << age << " лет\n";
+		
+		return os<<last_name << " " << first_name << " " << age << " лет\n";
+		
 	}
 };
+
+std::ostream& operator<<(std::ostream& os, const Human& obj)
+{
+	return os << obj.get_last_name() << " " << obj.get_first_name() << " " << obj.get_age() << endl;
+}
+
 
 class Student : public Human
 {
@@ -120,12 +130,12 @@ public:
 	} 
 
 	//Methods:
-	void info() const
+	virtual std:: ostream& info(std::ostream& os) const
 	{
-		Human::info();
-		cout << speciality<<" " << group<<" " << rating<<" " << attendance<<endl;
+		return Human::info(os) << speciality<<" " << group<<" " << rating<<" " << attendance<<endl;
 	}
 };
+
 
 class Teacher : public Human
 {
@@ -165,12 +175,13 @@ public:
 	}
 
 	//Methods
-	void info() const
+	virtual std::ostream& info(std::ostream& os) const override
 	{
-		Human::info();
-		cout << speciality << " " << experience << endl;
+		return Human::info(os) << speciality << " " << experience;
 	}
 };
+
+
 
 class Graduate : public Student
 {
@@ -201,16 +212,19 @@ public:
 	}
 
 	//Methods
-	void info() const
+	virtual std::ostream& info(std::ostream& os) const //override - класс переопределен
 	{
-		Student::info();
-		cout << subject << endl;
+		return  Student::info(os) << subject ;
 	}
 };
+
+//#define INHERITANCE
+#define POLYMORPHISM
 
 void main()
 {
 	setlocale(LC_ALL, "");
+#ifdef INHERITANCE
 	Human human("Montana", "Antonio", 25);
 	human.info();
 
@@ -222,5 +236,41 @@ void main()
 
 	Graduate grad("Schrader", "Hank", 48, "Criminalistic", "OBN", 85, 80, "How to catch Heisenberg");
 	grad.info();
+#endif // INHERITANCE
+
+#ifdef POLYMORPHISM
+	/*
+	Human* p_human1 = new Student("Pinkman", "Jessie", 25, "Chemistry", "WW_220", 80, 90); //указатель на базовый класс
+	//хранящий, адрес объекта Student
+	Human* p_human2 = new Teacher("White", "Walter", 50, "Chemistry", 25);
+	p_human1->info();
+	p_human2->info();
+	*/
+	
+	
+	//Generalisation:
+	Human* group[] =
+	{
+		new Student("Pinkman", "Jessie", 25, "Chemistry", "WW_220", 80, 90),
+		new Teacher("White", "Walter", 50, "Chemistry", 25), //UpCast
+		new Graduate("Schrader", "Hank", 48, "Criminalistic", "OBN", 85, 80, "How to catch Heisenberg"),
+		new Student("Vercetti", "Tomas", 30, "Criminalistic", "Vice", 85, 98),
+		new Teacher("Diaz", "Recardo", 50, "Weapons distributiin", 20)
+	};
+	cout << DELIMITER;
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		//group[i]->info();
+		cout << *group[i];
+		cout << DELIMITER;
+	}
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		delete group[i];
+	}
+
+#endif // POLYMORPHISM
+
+
 
 }

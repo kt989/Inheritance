@@ -69,7 +69,7 @@ public:
 
 std::ostream& operator<<(std::ostream& os, const Human& obj)
 {
-	return os << obj.get_last_name() << " " << obj.get_first_name() << " " << obj.get_age() << endl;
+	return obj.info(os);
 }
 
 
@@ -130,7 +130,7 @@ public:
 	} 
 
 	//Methods:
-	virtual std:: ostream& info(std::ostream& os) const
+	std:: ostream& info(std::ostream& os) const
 	{
 		return Human::info(os) << speciality<<" " << group<<" " << rating<<" " << attendance<<endl;
 	}
@@ -175,7 +175,7 @@ public:
 	}
 
 	//Methods
-	virtual std::ostream& info(std::ostream& os) const override
+	std::ostream& info(std::ostream& os) const 
 	{
 		return Human::info(os) << speciality << " " << experience;
 	}
@@ -212,7 +212,7 @@ public:
 	}
 
 	//Methods
-	virtual std::ostream& info(std::ostream& os) const //override - класс переопределен
+	std::ostream& info(std::ostream& os) const 
 	{
 		return  Student::info(os) << subject ;
 	}
@@ -261,7 +261,7 @@ void main()
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		//group[i]->info();
-		cout << *group[i];
+		cout << *group[i]<<endl;
 		cout << DELIMITER;
 	}
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)

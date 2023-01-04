@@ -55,21 +55,24 @@ public:
 	}
 	virtual ~Human()
 	{
-		cout << "Destructor:\t" << this << endl;
+		cout << "HDestructor:\t" << this << endl;
 	}
 
 	// Methods:
-	virtual std:: ostream& info(std::ostream& os) const
+	
+	virtual void info() const
 	{
-		
-		return os<<last_name << " " << first_name << " " << age << " лет\n";
-		
+
+		cout << last_name << " " << first_name << " " << age << " лет\n";
+
 	}
+	
+
 };
 
 std::ostream& operator<<(std::ostream& os, const Human& obj)
 {
-	return os << obj.get_last_name() << " " << obj.get_first_name() << " " << obj.get_age() << endl;
+	return os << obj.get_last_name() << " " << obj.get_first_name() << " " << obj.get_age();
 }
 
 
@@ -130,11 +133,19 @@ public:
 	} 
 
 	//Methods:
-	virtual std:: ostream& info(std::ostream& os) const
+	virtual void info() const override
 	{
-		return Human::info(os) << speciality<<" " << group<<" " << rating<<" " << attendance<<endl;
+		Human::info();
+		cout << speciality << " " << group << " " << rating << " " << attendance << endl;
 	}
+	
 };
+std::ostream& operator<< (std::ostream& os, const Student& obj)
+    {
+	os << (Human&)obj << " ";
+	return os <<  obj.get_speciality() << "  " << obj.get_group() << "  " << obj.get_rating() << "  " << obj.get_attendance();
+	}
+
 
 
 class Teacher : public Human
@@ -175,11 +186,19 @@ public:
 	}
 
 	//Methods
-	virtual std::ostream& info(std::ostream& os) const override
+	void info() const override
 	{
-		return Human::info(os) << speciality << " " << experience;
+		Human::info();
+		cout << speciality << " " << experience;
 	}
+
 };
+
+std::ostream& operator<<(std::ostream& os, const Teacher& obj)
+{
+	os << (Human&)obj << " ";
+	return os << obj.get_speciality() << "  " << obj.get_experience();
+}
 
 
 
@@ -187,7 +206,7 @@ class Graduate : public Student
 {
 	std::string subject;
 public:
-	const std::string get_subject()
+	const std::string get_subject() const
 	{
 		return subject;
 	}
@@ -212,11 +231,19 @@ public:
 	}
 
 	//Methods
-	virtual std::ostream& info(std::ostream& os) const //override - класс переопределен
+	void info() const override//override - класс переопределен
 	{
-		return  Student::info(os) << subject ;
+		Student::info();
+		cout << subject;
 	}
+
 };
+
+std::ostream& operator<<(std::ostream& os, const Graduate& obj)
+{
+	os << (Student&)obj << " ";
+	return os << obj.get_subject();
+}
 
 //#define INHERITANCE
 #define POLYMORPHISM
@@ -261,7 +288,12 @@ void main()
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		//group[i]->info();
-		cout << *group[i];
+		cout << typeid(*group[i]).name() << endl;
+		//cout << *group[i];
+		if (typeid(*group[i]) == typeid(Student)) cout << *dynamic_cast<Student*>(group[i])<<endl;
+		if (typeid(*group[i]) == typeid(Teacher)) cout << *dynamic_cast<Teacher*>(group[i]) << endl;
+		if (typeid(*group[i]) == typeid(Graduate)) cout << *dynamic_cast<Graduate*>(group[i]) << endl;
+
 		cout << DELIMITER;
 	}
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)

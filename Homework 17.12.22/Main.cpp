@@ -38,7 +38,7 @@ void main()
 	//std::ifstream fin("201_RAW.txt");
 	std::ofstream fout;
     fout.open("201 RAW.txt");
-	fout << "";
+	fout << NULL;
 	fout.close();
 	fin.open("201_RAW.txt");
 	if (fin.is_open())
@@ -52,7 +52,7 @@ void main()
 			fout << ip_buffer << "\t" << mac_buffer << endl;
 			fout.close();
 		}
-		system("201_RAW.txt");
+		system("201_RAW.txt");			
 		fin.close();
 	}
 	else
@@ -61,5 +61,7 @@ void main()
 	}
 
 		cout << "Change is complit" << endl;
+
+
 }
 

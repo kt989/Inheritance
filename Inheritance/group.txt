@@ -1,0 +1,5 @@
+class Student:	Pinkman   Jessie    25   Chemistry                WW_220  80      90      
+class Teacher:	White     Walter    50   Chemistry                25   
+class Graduate:	Schrader  Hank      48   Criminalistic            OBN     85      80      How to catch Heisenberg
+class Student:	Vercetti  Tomas     30   Criminalistic            Vice    85      98      
+class Teacher:	Diaz      Recardo   50   Weapons distributiin     20   

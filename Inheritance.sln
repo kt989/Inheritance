@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Homework 17.12.22", "Homewo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Files Homework 17.12.22 part 2", "Files Homework 17.12.22 part 2\Files Homework 17.12.22 part 2.vcxproj", "{EAAEA69B-CB24-4036-B49E-4B36EBC1C9E4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network Files", "Network Files\Network Files.vcxproj", "{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{EAAEA69B-CB24-4036-B49E-4B36EBC1C9E4}.Release|x64.Build.0 = Release|x64
 		{EAAEA69B-CB24-4036-B49E-4B36EBC1C9E4}.Release|x86.ActiveCfg = Release|Win32
 		{EAAEA69B-CB24-4036-B49E-4B36EBC1C9E4}.Release|x86.Build.0 = Release|Win32
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Debug|x64.ActiveCfg = Debug|x64
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Debug|x64.Build.0 = Debug|x64
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Debug|x86.ActiveCfg = Debug|Win32
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Debug|x86.Build.0 = Debug|Win32
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Release|x64.ActiveCfg = Release|x64
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Release|x64.Build.0 = Release|x64
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Release|x86.ActiveCfg = Release|Win32
+		{63E58E79-AB57-454C-AF6B-C1B9F9C9231E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
